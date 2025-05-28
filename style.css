@@ -1,83 +1,236 @@
-/* Variables */
+/* Victorian Theme Variables */
 :root {
-    /* Colors */
-    --primary-color: #FF6B6B;
-    --secondary-color: #4ECDC4;
-    --hover-bg-color: #f3f4f6;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    
-    /* Spacing */
-    --button-padding: 12px 24px;
-    --border-radius: 25px;
+    /* Colors - Rich Victorian Palette */
+    --primary-color: #8B0000;    /* Deep Red */
+    --secondary-color: #2F4F4F;  /* Dark Slate */
+    --accent-gold: #DAA520;      /* Golden Rod */
+    --bg-cream: #FDF5E6;         /* Old Lace */
+    --text-dark: #2B1810;        /* Deep Brown */
+    --shadow-color: rgba(43, 24, 16, 0.3);
+    --hover-bg-color: #F5E6D3;   /* Light Antique */
     
     /* Typography */
+    --font-family-main: 'Playfair Display', Georgia, serif;
+    --font-family-accent: 'Cinzel', serif;
     --font-size-base: 16px;
     --font-weight-bold: 600;
     
-    /* Transitions */
-    --transition-speed: 0.3s;
-    --transition-timing: ease;
+    /* Borders & Decorations */
+    --border-ornamental: 2px solid var(--accent-gold);
+    --border-radius: 0;          /* Victorian style prefers sharp corners */
+    
+    /* Spacing */
+    --button-padding: 15px 30px;
     
     /* Shadows */
     --shadow-sm: 0 4px 15px var(--shadow-color);
-    --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 6px 20px var(--shadow-color);
     
-    /* Z-index */
+    /* Other */
+    --transition-speed: 0.3s;
+    --transition-timing: ease;
     --z-modal: 1000;
 }
 
-/* Base Styles */
+/* Global Styles */
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #FDF5E6 !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
+    color: #2B1810 !important;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
 }
 
-/* Button Base */
-button {
-    transition: background-color var(--transition-speed) var(--transition-timing);
+/* Container principale */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Table Styles */
-#tableBody tr {
-    transition: background-color var(--transition-speed) var(--transition-timing);
+/* Bordi e decorazioni vittoriane */
+.victorian-border {
+    position: relative;
+    border: 2px solid #DAA520 !important;
+    background-color: #FDF5E6 !important;
+    padding: 30px !important;
+    margin: 20px 0 !important;
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.2) !important;
 }
 
-#tableBody tr:hover {
-    background-color: var(--hover-bg-color);
+.victorian-border::before,
+.victorian-border::after {
+    content: '❦';
+    color: #DAA520;
+    font-size: 24px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Modal Styles */
-#confirmModal {
-    z-index: var(--z-modal);
+.victorian-border::before {
+    top: -15px;
 }
 
-/* Gradient Button Component */
+.victorian-border::after {
+    bottom: -15px;
+}
+
+/* Titoli */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif !important;
+    color: #8B0000 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 1.5rem !important;
+}
+
+h1 {
+    font-size: 2.5rem !important;
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 2rem !important;
+    color: #2F4F4F !important;
+}
+
+/* Tabella vittoriana */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    border: 2px solid #DAA520 !important;
+}
+
+th {
+    background-color: #8B0000 !important;
+    color: #DAA520 !important;
+    font-family: 'Cinzel', serif !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px !important;
+    font-weight: bold;
+    text-align: left;
+}
+
+td {
+    padding: 12px 15px !important;
+    border-bottom: 1px solid #DAA520 !important;
+    color: #2B1810 !important;
+}
+
+tr:hover {
+    background-color: #F5E6D3 !important;
+}
+
+/* Form vittoriano */
+input, select, textarea {
+    width: 100%;
+    padding: 10px 15px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #DAA520 !important;
+    background-color: #FDF5E6 !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
+    color: #2B1810 !important;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none !important;
+    border-color: #8B0000 !important;
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.3) !important;
+}
+
+label {
+    font-family: 'Cinzel', serif !important;
+    color: #2F4F4F !important;
+    display: block;
+    margin-bottom: 8px !important;
+}
+
+/* Bottone vittoriano */
 .gradient-button {
-    /* Layout */
-    padding: var(--button-padding);
-    border-radius: var(--border-radius);
-    border: none;
-    
-    /* Typography */
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-bold);
-    color: white;
-    
-    /* Visual */
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    box-shadow: var(--shadow-sm);
+    background-color: #8B0000 !important;
+    color: #DAA520 !important;
+    border: 2px solid #DAA520 !important;
+    padding: 12px 25px !important;
+    font-family: 'Cinzel', serif !important;
+    font-size: 1rem !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
-    
-    /* Animation */
-    transition: all var(--transition-speed) var(--transition-timing);
+    transition: all 0.3s ease;
+    margin: 5px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
 }
 
 .gradient-button:hover {
-    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    background-color: #2F4F4F !important;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-.gradient-button:active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
+/* Modale vittoriana */
+#confirmModal {
+    background-color: rgba(43, 24, 16, 0.8) !important;
+}
+
+#confirmModal > div {
+    background-color: #FDF5E6 !important;
+    border: 2px solid #DAA520 !important;
+    padding: 25px !important;
+    max-width: 500px;
+    margin: 50px auto !important;
+    position: relative;
+}
+
+/* Decorazioni aggiuntive */
+.victorian-border::before {
+    content: '✧';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #DAA520;
+    font-size: 20px;
+}
+
+.victorian-border::after {
+    content: '✧';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #DAA520;
+    font-size: 20px;
+}
+
+/* Angoli decorativi */
+.victorian-border {
+    position: relative;
+}
+
+.victorian-border::before,
+.victorian-border::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #DAA520;
+}
+
+.victorian-border::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.victorian-border::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
 }

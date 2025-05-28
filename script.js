@@ -3,6 +3,7 @@ const dataForm = document.getElementById('dataForm');
 const itemIdInput = document.getElementById('itemId');
 const itemNameInput = document.getElementById('itemName');
 const itemValueInput = document.getElementById('itemValue');
+const phoneNumberInput = document.getElementById('phoneNumber');
 const submitButton = document.getElementById('submitButton');
 const cancelButton = document.getElementById('cancelEditButton');
 const tableBody = document.getElementById('tableBody');
@@ -29,9 +30,9 @@ function loadItems() {
     } else {
         // Dati di esempio se il localStorage è vuoto
         items = [
-            { id: Date.now() + 1, name: 'Elemento A', value: 100 },
-            { id: Date.now() + 2, name: 'Elemento B', value: 250 },
-            { id: Date.now() + 3, name: 'Elemento C', value: 75 }
+            { id: Date.now() + 1, name: 'Elemento A', value: 100, phone: '3331234567' },
+            { id: Date.now() + 2, name: 'Elemento B', value: 250, phone: '3339876543' },
+            { id: Date.now() + 3, name: 'Elemento C', value: 75, phone: '3335555555' }
         ];
     }
     renderTable(); // Una volta caricati, visualizziamo i dati nella tabella
@@ -54,7 +55,7 @@ function renderTable() {
         // Mostra un messaggio se non ci sono elementi
         const noDataRow = document.createElement('tr');
         noDataRow.innerHTML = `
-            <td colspan="4" class="py-3 px-6 text-center text-gray-500">Nessun dato disponibile. Aggiungi un elemento!</td>
+            <td colspan="5" class="py-3 px-6 text-center">Nessun dato disponibile. Aggiungi un elemento!</td>
         `;
         tableBody.appendChild(noDataRow);
         return;
@@ -62,17 +63,18 @@ function renderTable() {
 
     items.forEach(item => {
         const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-200', 'hover:bg-gray-100'); // Classi Tailwind per stile riga
+        row.classList.add('hover:bg-hover-bg-color', 'transition-colors', 'duration-200');
 
         row.innerHTML = `
-            <td class="py-3 px-6 text-left whitespace-nowrap">${item.id}</td>
-            <td class="py-3 px-6 text-left">${item.name}</td>
-            <td class="py-3 px-6 text-left">${item.value}</td>
+            <td class="py-3 px-6">${item.id}</td>
+            <td class="py-3 px-6">${item.name}</td>
+            <td class="py-3 px-6">${item.value}</td>
+            <td class="py-3 px-6">${item.phone || 'N/D'}</td>
             <td class="py-3 px-6 text-center">
-                <button data-id="${item.id}" class="edit-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded text-xs transition duration-300 ease-in-out">
+                <button data-id="${item.id}" class="gradient-button edit-btn">
                     Modifica
                 </button>
-                <button data-id="${item.id}" class="delete-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs ml-2 transition duration-300 ease-in-out">
+                <button data-id="${item.id}" class="gradient-button delete-btn ml-2">
                     Elimina
                 </button>
             </td>
@@ -81,51 +83,80 @@ function renderTable() {
     });
 }
 
+function validatePhoneNumber(phone) {
+    // Rimuove spazi e caratteri non numerici
+    const cleanPhone = phone.replace(/\D/g, '');
+    return cleanPhone.length === 10;
+}
+
+function showError(message) {
+    const tempAlertContainer = document.createElement('div');
+    tempAlertContainer.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background-color: #fecaca; color: #991b1b; padding: 1rem; border-radius: 0.375rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index:1001;';
+    tempAlertContainer.textContent = message;
+    document.body.appendChild(tempAlertContainer);
+    setTimeout(() => tempAlertContainer.remove(), 3000);
+}
+
 /**
  * Gestisce l'invio del form (aggiunta o modifica di un elemento).
  * @param {Event} event - L'evento di submit del form.
  */
 function handleFormSubmit(event) {
-    event.preventDefault(); // Impedisce il ricaricamento della pagina
+    event.preventDefault();
 
     const name = itemNameInput.value.trim();
     const value = parseFloat(itemValueInput.value);
+    const phone = phoneNumberInput.value.trim();
 
-    // Validazione semplice
-    if (!name || isNaN(value)) {
-        // In un'app reale, sostituire alert con una notifica UI più elegante
-        const tempAlertContainer = document.createElement('div');
-        tempAlertContainer.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background-color: #fecaca; color: #991b1b; padding: 1rem; border-radius: 0.375rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index:1001;';
-        tempAlertContainer.textContent = 'Per favore, inserisci un nome e un valore validi.';
-        document.body.appendChild(tempAlertContainer);
-        setTimeout(() => tempAlertContainer.remove(), 3000);
+    // Validazione migliorata
+    if (!name) {
+        showError('Il nome è obbligatorio.');
+        itemNameInput.focus();
         return;
     }
 
+    if (isNaN(value) || value < 0) {
+        showError('Inserisci un valore numerico valido.');
+        itemValueInput.focus();
+        return;
+    }
+
+    if (!validatePhoneNumber(phone)) {
+        showError('Inserisci un numero di telefono valido di 10 cifre.');
+        phoneNumberInput.focus();
+        return;
+    }
+
+    // Formatta il numero di telefono
+    const formattedPhone = phone.replace(/\D/g, '');
+
     if (editingItemId) {
-        // Siamo in modalità modifica
         const itemIndex = items.findIndex(item => item.id === editingItemId);
         if (itemIndex !== -1) {
-            items[itemIndex].name = name;
-            items[itemIndex].value = value;
+            items[itemIndex] = {
+                ...items[itemIndex],
+                name: name,
+                value: value,
+                phone: formattedPhone
+            };
         }
-        editingItemId = null; // Resettiamo lo stato di modifica
-        submitButton.textContent = 'Aggiungi Elemento'; // Ripristiniamo il testo del bottone
-        formTitle.textContent = 'Aggiungi Nuovo Elemento'; // Ripristiniamo il titolo del form
-        cancelButton.classList.add('hidden'); // Nascondiamo il bottone Annulla
+        editingItemId = null;
+        submitButton.textContent = 'Aggiungi Elemento';
+        formTitle.textContent = 'Aggiungi Nuovo Elemento';
+        cancelButton.classList.add('hidden');
     } else {
-        // Siamo in modalità aggiunta
         const newItem = {
-            id: Date.now(), // Generiamo un ID unico basato sul timestamp
+            id: Date.now(),
             name: name,
-            value: value
+            value: value,
+            phone: formattedPhone
         };
         items.push(newItem);
     }
 
-    saveItems(); // Salviamo i dati aggiornati
-    renderTable(); // Aggiorniamo la tabella
-    dataForm.reset(); // Puliamo il form
+    saveItems();
+    renderTable();
+    dataForm.reset();
 }
 
 /**
@@ -138,6 +169,7 @@ function editItem(id) {
         itemIdInput.value = item.id; // Anche se nascosto, può essere utile
         itemNameInput.value = item.name;
         itemValueInput.value = item.value;
+        phoneNumberInput.value = item.phone || '';
         editingItemId = item.id; // Impostiamo l'ID dell'elemento in modifica
 
         submitButton.textContent = 'Salva Modifiche'; // Cambiamo il testo del bottone

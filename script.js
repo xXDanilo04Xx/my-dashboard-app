@@ -16,9 +16,6 @@ const cancelDeleteButton = document.getElementById('cancelDelete');
 
 // Gestione del tema
 const themeToggle = document.getElementById('themeToggle');
-const settingsModal = document.getElementById('settingsModal');
-const closeSettings = document.getElementById('closeSettings');
-const settingsButton = document.querySelector('.profile-menu-item:nth-child(2)');
 
 let items = []; // Array che conterrà tutti i nostri dati
 let editingItemId = null; // Variabile per tenere traccia dell'ID dell'elemento in modifica
@@ -246,28 +243,10 @@ cancelDeleteButton.addEventListener('click', () => {
     itemToDeleteId = null; // Resetta l'ID
 });
 
-// Event listeners per il tema
+// Event listener per il tema
 themeToggle.addEventListener('change', toggleTheme);
 
-// Event listeners per la modale delle impostazioni
-settingsButton.addEventListener('click', () => {
-    settingsModal.classList.remove('hidden');
-});
-
-closeSettings.addEventListener('click', () => {
-    settingsModal.classList.add('hidden');
-});
-
-// Chiudi la modale delle impostazioni quando si clicca fuori
-settingsModal.addEventListener('click', (e) => {
-    if (e.target === settingsModal) {
-        settingsModal.classList.add('hidden');
-    }
-});
-
-// --- Inizializzazione ---
-
-// Carichiamo i dati all'avvio dell'applicazione
+// Carica il tema all'avvio
 document.addEventListener('DOMContentLoaded', () => {
     loadItems();
     loadTheme();

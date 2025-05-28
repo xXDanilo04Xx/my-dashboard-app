@@ -34,29 +34,38 @@
 
 /* Global Styles */
 body {
-    background-color: #FDF5E6 !important;
+    background: linear-gradient(rgba(43, 24, 16, 0.1), rgba(43, 24, 16, 0.2)), 
+                url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="M0 0h20L0 20z"/%3E%3C/g%3E%3C/svg%3E');
     font-family: 'Playfair Display', Georgia, serif !important;
     color: #2B1810 !important;
     line-height: 1.6;
     margin: 0;
     padding: 20px;
+    min-height: 100vh;
 }
 
-/* Container principale */
+/* Container principale con sfondo opaco */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background: rgba(253, 245, 230, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(43, 24, 16, 0.1);
+    border-radius: 10px;
 }
 
-/* Bordi e decorazioni vittoriane */
+/* Bordi e decorazioni vittoriane con sfondo opaco */
 .victorian-border {
     position: relative;
-    border: 2px solid #DAA520 !important;
-    background-color: #FDF5E6 !important;
+    border: 2px solid rgba(218, 165, 32, 0.8) !important;
+    background: rgba(253, 245, 230, 0.9) !important;
     padding: 30px !important;
     margin: 20px 0 !important;
     box-shadow: 0 0 15px rgba(218, 165, 32, 0.2) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .victorian-border::before,
@@ -98,16 +107,17 @@ h2 {
     color: #2F4F4F !important;
 }
 
-/* Tabella vittoriana */
+/* Tabella vittoriana con sfondo opaco */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 25px 0;
-    border: 2px solid #DAA520 !important;
+    border: 2px solid rgba(218, 165, 32, 0.8) !important;
+    background: rgba(253, 245, 230, 0.95) !important;
 }
 
 th {
-    background-color: #8B0000 !important;
+    background: rgba(139, 0, 0, 0.9) !important;
     color: #DAA520 !important;
     font-family: 'Cinzel', serif !important;
     text-transform: uppercase;
@@ -119,24 +129,26 @@ th {
 
 td {
     padding: 12px 15px !important;
-    border-bottom: 1px solid #DAA520 !important;
+    border-bottom: 1px solid rgba(218, 165, 32, 0.3) !important;
     color: #2B1810 !important;
 }
 
 tr:hover {
-    background-color: #F5E6D3 !important;
+    background: rgba(245, 230, 211, 0.8) !important;
 }
 
-/* Form vittoriano */
+/* Form vittoriano con sfondo opaco */
 input, select, textarea {
     width: 100%;
     padding: 10px 15px !important;
     margin-bottom: 15px !important;
-    border: 1px solid #DAA520 !important;
-    background-color: #FDF5E6 !important;
+    border: 1px solid rgba(218, 165, 32, 0.8) !important;
+    background: rgba(253, 245, 230, 0.9) !important;
     font-family: 'Playfair Display', Georgia, serif !important;
     color: #2B1810 !important;
     transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 input:focus, select:focus, textarea:focus {
@@ -152,11 +164,11 @@ label {
     margin-bottom: 8px !important;
 }
 
-/* Bottone vittoriano */
+/* Bottone vittoriano con sfondo opaco */
 .gradient-button {
-    background-color: #8B0000 !important;
+    background: rgba(139, 0, 0, 0.9) !important;
     color: #DAA520 !important;
-    border: 2px solid #DAA520 !important;
+    border: 2px solid rgba(218, 165, 32, 0.8) !important;
     padding: 12px 25px !important;
     font-family: 'Cinzel', serif !important;
     font-size: 1rem !important;
@@ -166,71 +178,60 @@ label {
     transition: all 0.3s ease;
     margin: 5px !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .gradient-button:hover {
-    background-color: #2F4F4F !important;
+    background: rgba(47, 79, 79, 0.9) !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Modale vittoriana */
+/* Modale vittoriana con sfondo opaco */
 #confirmModal {
-    background-color: rgba(43, 24, 16, 0.8) !important;
+    background: rgba(43, 24, 16, 0.6) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 #confirmModal > div {
-    background-color: #FDF5E6 !important;
-    border: 2px solid #DAA520 !important;
+    background: rgba(253, 245, 230, 0.95) !important;
+    border: 2px solid rgba(218, 165, 32, 0.8) !important;
     padding: 25px !important;
     max-width: 500px;
     margin: 50px auto !important;
     position: relative;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* Decorazioni aggiuntive */
-.victorian-border::before {
-    content: '✧';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: #DAA520;
-    font-size: 20px;
+/* Effetto vetro smerigliato per elementi hover */
+.victorian-border:hover {
+    background: rgba(253, 245, 230, 0.95) !important;
+    transition: all 0.3s ease;
 }
 
-.victorian-border::after {
-    content: '✧';
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #DAA520;
-    font-size: 20px;
-}
-
-/* Angoli decorativi */
-.victorian-border {
-    position: relative;
-}
-
+/* Decorazioni aggiuntive con opacità */
 .victorian-border::before,
 .victorian-border::after {
-    content: '';
+    content: '✧';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #DAA520;
+    color: rgba(218, 165, 32, 0.6);
+    font-size: 20px;
 }
 
 .victorian-border::before {
-    top: -2px;
-    left: -2px;
-    border-right: none;
-    border-bottom: none;
+    top: 10px;
+    left: 10px;
 }
 
 .victorian-border::after {
-    bottom: -2px;
-    right: -2px;
-    border-left: none;
-    border-top: none;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Stile per nascondere elementi */
+.hidden {
+    display: none !important;
 }

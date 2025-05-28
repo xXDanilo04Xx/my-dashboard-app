@@ -1,18 +1,25 @@
-/* Variabili moderne */
+/* Variabili Napoli */
 :root {
-    --primary: #2D3250;
-    --secondary: #424769;
-    --accent: #7077A1;
+    --napoli-blue: #00A1E1;
+    --napoli-dark-blue: #005C91;
+    --napoli-light-blue: #72C7ED;
+    --primary: #00A1E1;
+    --secondary: #005C91;
+    --accent: #72C7ED;
     --light: #F6F6F6;
-    --text: #2D3250;
+    --text: #1A1A1A;
     --success: #4CAF50;
     --danger: #F44336;
-    --shadow: rgba(45, 50, 80, 0.1);
+    --shadow: rgba(0, 161, 225, 0.1);
 }
 
-/* Stili base moderni */
+/* Stili base Napoli */
 body {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    background: linear-gradient(135deg, rgba(0, 161, 225, 0.9), rgba(0, 92, 145, 0.8)),
+                url('https://wallpapercave.com/wp/wp2531115.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     color: var(--text) !important;
     line-height: 1.6;
@@ -31,6 +38,7 @@ body {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px var(--shadow);
     border-radius: 16px;
+    border: 1px solid rgba(0, 161, 225, 0.2);
 }
 
 /* Card moderna */
@@ -81,7 +89,7 @@ table {
 }
 
 th {
-    background: var(--primary) !important;
+    background: var(--napoli-blue) !important;
     color: white !important;
     font-family: 'Inter', sans-serif !important;
     text-transform: none;
@@ -98,7 +106,7 @@ td {
 }
 
 tr:hover {
-    background: rgba(112, 119, 161, 0.05) !important;
+    background: rgba(0, 161, 225, 0.05) !important;
 }
 
 /* Form moderno */
@@ -116,8 +124,8 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
     outline: none !important;
-    border-color: var(--accent) !important;
-    box-shadow: 0 0 0 3px rgba(112, 119, 161, 0.2) !important;
+    border-color: var(--napoli-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0, 161, 225, 0.2) !important;
 }
 
 label {
@@ -130,7 +138,7 @@ label {
 
 /* Bottone moderno */
 .gradient-button {
-    background: var(--primary) !important;
+    background: linear-gradient(135deg, var(--napoli-blue), var(--napoli-dark-blue)) !important;
     color: white !important;
     border: none !important;
     padding: 12px 24px !important;
@@ -147,7 +155,7 @@ label {
 }
 
 .gradient-button:hover {
-    background: var(--secondary) !important;
+    background: linear-gradient(135deg, var(--napoli-dark-blue), var(--napoli-blue)) !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px var(--shadow) !important;
 }

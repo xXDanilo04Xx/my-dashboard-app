@@ -381,3 +381,120 @@ th::after {
         transition: none !important;
     }
 }
+
+/* Stili per il profilo */
+.profile-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.profile-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--napoli-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 161, 225, 0.2);
+}
+
+.profile-icon:hover .profile-img {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 161, 225, 0.3);
+}
+
+.profile-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.profile-icon:hover .profile-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-menu-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.profile-menu-item:hover {
+    background: rgba(0, 161, 225, 0.1);
+    color: var(--napoli-blue);
+}
+
+.profile-menu-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: var(--napoli-blue);
+}
+
+/* Animazione per il menu */
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-menu {
+    animation: menuFadeIn 0.3s ease-out;
+}
+
+/* Aggiungi una freccia al menu */
+.profile-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 16px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    transform: rotate(45deg);
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+    
+    .profile-menu {
+        position: absolute;
+        width: 100%;
+        max-width: 250px;
+    }
+}

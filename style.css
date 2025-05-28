@@ -1,0 +1,83 @@
+/* Variables */
+:root {
+    /* Colors */
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --hover-bg-color: #f3f4f6;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    
+    /* Spacing */
+    --button-padding: 12px 24px;
+    --border-radius: 25px;
+    
+    /* Typography */
+    --font-size-base: 16px;
+    --font-weight-bold: 600;
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+    --transition-timing: ease;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 15px var(--shadow-color);
+    --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.25);
+    
+    /* Z-index */
+    --z-modal: 1000;
+}
+
+/* Base Styles */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Button Base */
+button {
+    transition: background-color var(--transition-speed) var(--transition-timing);
+}
+
+/* Table Styles */
+#tableBody tr {
+    transition: background-color var(--transition-speed) var(--transition-timing);
+}
+
+#tableBody tr:hover {
+    background-color: var(--hover-bg-color);
+}
+
+/* Modal Styles */
+#confirmModal {
+    z-index: var(--z-modal);
+}
+
+/* Gradient Button Component */
+.gradient-button {
+    /* Layout */
+    padding: var(--button-padding);
+    border-radius: var(--border-radius);
+    border: none;
+    
+    /* Typography */
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: white;
+    
+    /* Visual */
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    
+    /* Animation */
+    transition: all var(--transition-speed) var(--transition-timing);
+}
+
+.gradient-button:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.gradient-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}

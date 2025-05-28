@@ -1,237 +1,218 @@
-/* Victorian Theme Variables */
+/* Variabili moderne */
 :root {
-    /* Colors - Rich Victorian Palette */
-    --primary-color: #8B0000;    /* Deep Red */
-    --secondary-color: #2F4F4F;  /* Dark Slate */
-    --accent-gold: #DAA520;      /* Golden Rod */
-    --bg-cream: #FDF5E6;         /* Old Lace */
-    --text-dark: #2B1810;        /* Deep Brown */
-    --shadow-color: rgba(43, 24, 16, 0.3);
-    --hover-bg-color: #F5E6D3;   /* Light Antique */
-    
-    /* Typography */
-    --font-family-main: 'Playfair Display', Georgia, serif;
-    --font-family-accent: 'Cinzel', serif;
-    --font-size-base: 16px;
-    --font-weight-bold: 600;
-    
-    /* Borders & Decorations */
-    --border-ornamental: 2px solid var(--accent-gold);
-    --border-radius: 0;          /* Victorian style prefers sharp corners */
-    
-    /* Spacing */
-    --button-padding: 15px 30px;
-    
-    /* Shadows */
-    --shadow-sm: 0 4px 15px var(--shadow-color);
-    --shadow-lg: 0 6px 20px var(--shadow-color);
-    
-    /* Other */
-    --transition-speed: 0.3s;
-    --transition-timing: ease;
-    --z-modal: 1000;
+    --primary: #2D3250;
+    --secondary: #424769;
+    --accent: #7077A1;
+    --light: #F6F6F6;
+    --text: #2D3250;
+    --success: #4CAF50;
+    --danger: #F44336;
+    --shadow: rgba(45, 50, 80, 0.1);
 }
 
-/* Global Styles */
+/* Stili base moderni */
 body {
-    background: linear-gradient(rgba(43, 24, 16, 0.1), rgba(43, 24, 16, 0.2)), 
-                url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="M0 0h20L0 20z"/%3E%3C/g%3E%3C/svg%3E');
-    font-family: 'Playfair Display', Georgia, serif !important;
-    color: #2B1810 !important;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: var(--text) !important;
     line-height: 1.6;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
 }
 
-/* Container principale con sfondo opaco */
+/* Container principale */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background: rgba(253, 245, 230, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px rgba(43, 24, 16, 0.1);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px var(--shadow);
+    border-radius: 16px;
 }
 
-/* Bordi e decorazioni vittoriane con sfondo opaco */
+/* Card moderna */
 .victorian-border {
     position: relative;
-    border: 2px solid rgba(218, 165, 32, 0.8) !important;
-    background: rgba(253, 245, 230, 0.9) !important;
-    padding: 30px !important;
-    margin: 20px 0 !important;
-    box-shadow: 0 0 15px rgba(218, 165, 32, 0.2) !important;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    border: none !important;
+    background: white !important;
+    padding: 24px !important;
+    margin: 16px 0 !important;
+    box-shadow: 0 4px 20px var(--shadow) !important;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.victorian-border::before,
-.victorian-border::after {
-    content: '❦';
-    color: #DAA520;
-    font-size: 24px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.victorian-border:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px var(--shadow) !important;
 }
 
-.victorian-border::before {
-    top: -15px;
-}
-
-.victorian-border::after {
-    bottom: -15px;
-}
-
-/* Titoli */
+/* Titoli moderni */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif !important;
-    color: #8B0000 !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: center;
-    margin-bottom: 1.5rem !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.5px;
 }
 
 h1 {
     font-size: 2.5rem !important;
-    border-bottom: 2px solid #DAA520;
-    padding-bottom: 10px;
+    margin-bottom: 1.5rem !important;
 }
 
 h2 {
-    font-size: 2rem !important;
-    color: #2F4F4F !important;
+    font-size: 1.75rem !important;
+    color: var(--secondary) !important;
 }
 
-/* Tabella vittoriana con sfondo opaco */
+/* Tabella moderna */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 25px 0;
-    border: 2px solid rgba(218, 165, 32, 0.8) !important;
-    background: rgba(253, 245, 230, 0.95) !important;
+    border: none !important;
+    background: white !important;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 th {
-    background: rgba(139, 0, 0, 0.9) !important;
-    color: #DAA520 !important;
-    font-family: 'Cinzel', serif !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 15px !important;
-    font-weight: bold;
-    text-align: left;
+    background: var(--primary) !important;
+    color: white !important;
+    font-family: 'Inter', sans-serif !important;
+    text-transform: none;
+    font-weight: 500;
+    padding: 16px !important;
+    font-size: 0.9rem;
 }
 
 td {
-    padding: 12px 15px !important;
-    border-bottom: 1px solid rgba(218, 165, 32, 0.3) !important;
-    color: #2B1810 !important;
+    padding: 16px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    color: var(--text) !important;
+    font-size: 0.95rem;
 }
 
 tr:hover {
-    background: rgba(245, 230, 211, 0.8) !important;
+    background: rgba(112, 119, 161, 0.05) !important;
 }
 
-/* Form vittoriano con sfondo opaco */
+/* Form moderno */
 input, select, textarea {
     width: 100%;
-    padding: 10px 15px !important;
-    margin-bottom: 15px !important;
-    border: 1px solid rgba(218, 165, 32, 0.8) !important;
-    background: rgba(253, 245, 230, 0.9) !important;
-    font-family: 'Playfair Display', Georgia, serif !important;
-    color: #2B1810 !important;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    padding: 12px 16px !important;
+    margin-bottom: 16px !important;
+    border: 2px solid #E0E0E0 !important;
+    background: white !important;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none !important;
-    border-color: #8B0000 !important;
-    box-shadow: 0 0 5px rgba(139, 0, 0, 0.3) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(112, 119, 161, 0.2) !important;
 }
 
 label {
-    font-family: 'Cinzel', serif !important;
-    color: #2F4F4F !important;
-    display: block;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--secondary) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
     margin-bottom: 8px !important;
 }
 
-/* Bottone vittoriano con sfondo opaco */
+/* Bottone moderno */
 .gradient-button {
-    background: rgba(139, 0, 0, 0.9) !important;
-    color: #DAA520 !important;
-    border: 2px solid rgba(218, 165, 32, 0.8) !important;
-    padding: 12px 25px !important;
-    font-family: 'Cinzel', serif !important;
-    font-size: 1rem !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    background: var(--primary) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 5px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+    margin: 4px !important;
+    box-shadow: 0 2px 4px var(--shadow) !important;
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .gradient-button:hover {
-    background: rgba(47, 79, 79, 0.9) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    background: var(--secondary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--shadow) !important;
 }
 
-/* Modale vittoriana con sfondo opaco */
+.gradient-button.delete-btn {
+    background: var(--danger) !important;
+}
+
+.gradient-button.edit-btn {
+    background: var(--accent) !important;
+}
+
+/* Modale moderna */
 #confirmModal {
-    background: rgba(43, 24, 16, 0.6) !important;
+    background: rgba(45, 50, 80, 0.5) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
 
 #confirmModal > div {
-    background: rgba(253, 245, 230, 0.95) !important;
-    border: 2px solid rgba(218, 165, 32, 0.8) !important;
-    padding: 25px !important;
-    max-width: 500px;
+    background: white !important;
+    border: none !important;
+    padding: 24px !important;
+    max-width: 400px;
     margin: 50px auto !important;
-    position: relative;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px var(--shadow) !important;
 }
 
-/* Effetto vetro smerigliato per elementi hover */
-.victorian-border:hover {
-    background: rgba(253, 245, 230, 0.95) !important;
-    transition: all 0.3s ease;
-}
-
-/* Decorazioni aggiuntive con opacità */
-.victorian-border::before,
-.victorian-border::after {
-    content: '✧';
-    position: absolute;
-    color: rgba(218, 165, 32, 0.6);
-    font-size: 20px;
-}
-
-.victorian-border::before {
-    top: 10px;
-    left: 10px;
-}
-
-.victorian-border::after {
-    bottom: 10px;
-    right: 10px;
-}
-
-/* Stile per nascondere elementi */
+/* Utility */
 .hidden {
     display: none !important;
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.victorian-border {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+    
+    .victorian-border {
+        padding: 16px !important;
+    }
+    
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .gradient-button {
+        width: 100%;
+        margin: 4px 0 !important;
+    }
 }

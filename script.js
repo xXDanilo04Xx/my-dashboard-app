@@ -14,6 +14,12 @@ const confirmModal = document.getElementById('confirmModal');
 const confirmDeleteButton = document.getElementById('confirmDelete');
 const cancelDeleteButton = document.getElementById('cancelDelete');
 
+// Gestione del tema
+const themeToggle = document.getElementById('themeToggle');
+const settingsModal = document.getElementById('settingsModal');
+const closeSettings = document.getElementById('closeSettings');
+const settingsButton = document.querySelector('.profile-menu-item:nth-child(2)');
+
 let items = []; // Array che conterrà tutti i nostri dati
 let editingItemId = null; // Variabile per tenere traccia dell'ID dell'elemento in modifica
 let itemToDeleteId = null; // Variabile per tenere traccia dell'ID dell'elemento da eliminare
@@ -240,8 +246,48 @@ cancelDeleteButton.addEventListener('click', () => {
     itemToDeleteId = null; // Resetta l'ID
 });
 
+// Event listeners per il tema
+themeToggle.addEventListener('change', toggleTheme);
+
+// Event listeners per la modale delle impostazioni
+settingsButton.addEventListener('click', () => {
+    settingsModal.classList.remove('hidden');
+});
+
+closeSettings.addEventListener('click', () => {
+    settingsModal.classList.add('hidden');
+});
+
+// Chiudi la modale delle impostazioni quando si clicca fuori
+settingsModal.addEventListener('click', (e) => {
+    if (e.target === settingsModal) {
+        settingsModal.classList.add('hidden');
+    }
+});
+
 // --- Inizializzazione ---
 
 // Carichiamo i dati all'avvio dell'applicazione
-document.addEventListener('DOMContentLoaded', loadItems);
+document.addEventListener('DOMContentLoaded', () => {
+    loadItems();
+    loadTheme();
+});
+
+// Carica il tema salvato
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'dark';
+    }
+}
+
+// Cambia il tema
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
 
